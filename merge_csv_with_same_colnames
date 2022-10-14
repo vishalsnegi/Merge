@@ -1,0 +1,14 @@
+csvfiles <- list.files(pattern="*.csv")
+csvfiles
+
+cols <- c("seq_name", "sequence")
+df <- data.frame(matrix(nrow=0, ncol = length(cols)))
+colnames(df) = cols
+print(df)
+
+for (f in csvfiles){
+  tmp <- read.csv(file=f, header=T)
+  df <- rbind(df, tmp)
+}
+
+write.csv(df, "Fab_CNL.csv", row.names = F)
